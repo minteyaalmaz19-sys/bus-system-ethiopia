@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lion of Judah Bus - Login</title>
+    <style>
+        body {
+            margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80'); /* የባስ ምስል */
+            background-size: cover; background-position: center; height: 100vh;
+            display: flex; justify-content: center; align-items: center; color: white;
+        }
+        .login-box {
+            background: rgba(20, 20, 20, 0.9); padding: 40px; border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5); width: 350px; text-align: center;
+            border: 2px solid #d4a373;
+        }
+        .login-box h1 { color: #d4a373; margin-bottom: 10px; font-size: 24px; }
+        .login-box p { font-size: 14px; margin-bottom: 30px; opacity: 0.8; }
+        .lion-icon { font-size: 50px; margin-bottom: 10px; }
+        input {
+            width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px;
+            border: 1px solid #444; background: #222; color: white; box-sizing: border-box;
+        }
+        button {
+            width: 100%; padding: 12px; background: #d4a373; border: none;
+            border-radius: 8px; color: black; font-weight: bold; cursor: pointer;
+            transition: 0.3s; margin-top: 20px;
+        }
+        button:hover { background: #b88b5c; transform: scale(1.02); }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <div class="lion-icon">🦁</div>
+        <h1>Lion of Judah Bus</h1>
+        <p>Ticket Service System</p>
+        <form action="/login" method="post">
+            <input type="text" name="card_id" placeholder="Card ID (LION-001)" required>
+            <input type="password" name="password" placeholder="PIN (1234)" required>
+            <button type="submit">ENTER SYSTEM</button>
+        </form>
+    </div>
+</body>
+</html>

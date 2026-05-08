@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lion of Judah - Selection</title>
+    <style>
+        body { font-family: sans-serif; background: #121212; color: white; margin: 0; }
+        header { background: #1a1a1a; padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #d4a373; }
+        
+        /* Hamburger Menu Styles */
+        .menu-icon { font-size: 30px; cursor: pointer; padding-right: 20px; }
+        .sidebar { height: 100%; width: 0; position: fixed; right: 0; top: 0; background-color: #1a1a1a; overflow-x: hidden; transition: 0.5s; padding-top: 60px; box-shadow: -5px 0 15px rgba(0,0,0,0.5); z-index: 100; }
+        .sidebar a { padding: 15px 25px; text-decoration: none; font-size: 18px; color: #d4a373; display: block; transition: 0.3s; }
+        .sidebar a:hover { background: #333; }
+        .sidebar .close-btn { position: absolute; top: 10px; left: 25px; font-size: 36px; }
+
+        .container { padding: 40px; text-align: center; }
+        .bus-list { display: flex; justify-content: center; gap: 20px; margin-top: 30px; }
+        .bus-card { background: #222; padding: 20px; border-radius: 10px; border: 1px solid #d4a373; width: 150px; cursor: pointer; }
+        .bus-card:hover { background: #d4a373; color: black; }
+        
+        .search-section { margin-top: 40px; background: #1a1a1a; padding: 30px; border-radius: 15px; display: inline-block; }
+        input[type="number"] { padding: 10px; border-radius: 5px; border: none; width: 200px; }
+        .receipt { margin-top: 20px; padding: 20px; border: 2px dashed #d4a373; display: none; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div style="font-weight: bold; font-size: 20px;">🦁 Lion of Judah Bus</div>
+    <div class="menu-icon" onclick="openNav()">&#9776;</div>
+</header>
+
+<div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&times;</a>
+    <a href="#">📜 Previous Transactions</a>
+    <a href="#">📅 Travel History</a>
+    <a href="#">⚙️ Change Password</a>
+    <a href="/">🚪 Logout</a>
+</div>
+
+<div class="container">
+    <h2>Select Your Bus</h2>
+    <div class="bus-list">
+        <div class="bus-card">Anbessa Bus</div>
+        <div class="bus-card">Sheger</div>
+        <div class="bus-card">Velocity</div>
+    </div>
+
+    <div class="search-section">
+        <h3>🔍 Search Bus Number</h3>
+        <input type="number" id="busNum" placeholder="Enter Bus No. (e.g., 60 or 159)">
+        <button onclick="checkBus()" style="padding: 10px 20px; background: #d4a373; border: none; cursor: pointer;">Search</button>
+        
+        <div id="busResult" style="margin-top: 20px; font-weight: bold;"></div>
+        
+        <div id="paymentArea" style="display:none; margin-top: 20px;">
+            <input type="password" id="pin" placeholder="Enter PIN to confirm">
+            <button onclick="printReceipt()" style="background: green; color: white;">Get Receipt</button>
+        </div>
+
+        <div id="receipt" class="receipt">
+            <h4>🎟️ Ticket Receipt</h4>
+            <p id="routeDetail"></p>
+            <p id="priceDetail"></p>
+            <p>Status: Paid ✅</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openNav() { document.getElementById("mySidebar").style.width = "250px"; }
+    function closeNav() { document.getElementById("mySidebar").style.width = "0"; }
+
+    function checkBus() {
+        let num = document.getElementById("busNum").value;
+        let res = document.getElementById("busResult");
+        let pay = document.getElementById("paymentArea");
+
+        if(num == "60") {
+            res.innerHTML = "Route: Addis Ababa to Debrezeit <br> Price: 100 Birr";
+            pay.style.display = "block";
+        } else if(num == "159") {
+            res.innerHTML = "Route: Shiromeda to Mexico <br> Price: 15 Birr";
+            pay.style.display = "block";
+        } else {
+            res.innerHTML = "Bus not found!";
+            pay.style.display = "none";
+        }
+    }
+
+    function printReceipt() {
+        let pin = document.getElementById("pin").value;
+        if(pin === "1234") {
+            document.getElementById("receipt").style.display = "block";
+            let num = document.getElementById("busNum").value;
+            if(num == "60") {
+                document.getElementById("routeDetail").innerText = "Route: Addis - Debrezeit";
+                document.getElementById("priceDetail").innerText = "Amount: 100 Birr";
+            } else {
+                document.getElementById("routeDetail").innerText = "Route: Shiromeda - Mexico";
+                document.getElementById("priceDetail").innerText = "Amount: 15 Birr";
+            }
+        } else {
+            alert("Wrong PIN!");
+        }
+    }
+</script>
+
+</body>
+</html>
